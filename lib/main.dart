@@ -45,6 +45,21 @@ class _MyEasyListAppState extends State<MyEasyListApp> {
     });
   }
 
+class MyEasyListApp extends StatefulWidget {
+  @override
+  State<MyEasyListApp> createState() => _MyEasyListAppState();
+}
+
+class _MyEasyListAppState extends State<MyEasyListApp> {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode =
+          _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
