@@ -5,7 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final VoidCallback onToggleTheme;
+  final ThemeMode themeMode;
+
+  const HomeScreen({
+    super.key,
+    required this.onToggleTheme,
+    required this.themeMode,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -34,7 +41,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Minhas Listas'), centerTitle: true),
+      appBar: AppBar(
+        title: Text('Minhas Listas'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(widget.themeMode == ThemeMode.dark
+                ? Icons.dark_mode
+                : Icons.light_mode),
+            onPressed: widget.onToggleTheme,
+          ),
+        ],
+      ),
       body: ValueListenableBuilder(
         valueListenable: checklistBox.listenable(),
         builder: (context, Box<Checklist> box, _) {
