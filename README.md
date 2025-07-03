@@ -19,4 +19,5 @@ samples, guidance on mobile development, and a full API reference.
 
 This app supports system-aware dark mode. By default it follows your device's
 theme setting. You can toggle between light and dark themes from the home
-screen using the theme icon in the top-right corner.
+screen using the theme icon in the top-right corner. Your choice is saved
+locally so the app remembers it on the next launch.
