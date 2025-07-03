@@ -19,16 +19,39 @@ void main() async {
   runApp(MyEasyListApp());
 }
 
-class MyEasyListApp extends StatelessWidget {
+class MyEasyListApp extends StatefulWidget {
+  @override
+  State<MyEasyListApp> createState() => _MyEasyListAppState();
+}
+
+class _MyEasyListAppState extends State<MyEasyListApp> {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode =
+          _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MyEasyList',
+      themeMode: _themeMode,
       theme: ThemeData(
         primarySwatch: Colors.teal,
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.teal,
+        useMaterial3: true,
+      ),
+      home: HomeScreen(
+        onToggleTheme: _toggleTheme,
+        themeMode: _themeMode,
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
